@@ -58,14 +58,14 @@ static void* OutOfMemoryError(size_t size)
 
 void* fastMalloc( size_t size )
 {
-#ifdef HAVE_POSIX_MEMALIGN
+#if false //def HAVE_POSIX_MEMALIGN
     void* ptr = NULL;
     if(posix_memalign(&ptr, CV_MALLOC_ALIGN, size))
         ptr = NULL;
     if(!ptr)
         return OutOfMemoryError(size);
     return ptr;
-#elif defined HAVE_MEMALIGN
+#elif false // defined HAVE_MEMALIGN
     void* ptr = memalign(CV_MALLOC_ALIGN, size);
     if(!ptr)
         return OutOfMemoryError(size);
@@ -82,7 +82,7 @@ void* fastMalloc( size_t size )
 
 void fastFree(void* ptr)
 {
-#if defined HAVE_POSIX_MEMALIGN || defined HAVE_MEMALIGN
+#if false // defined HAVE_POSIX_MEMALIGN || defined HAVE_MEMALIGN
     free(ptr);
 #else
     if(ptr)
