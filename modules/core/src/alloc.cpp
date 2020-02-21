@@ -128,7 +128,7 @@ void* fastMalloc_(size_t size)
 void* fastMalloc(size_t size)
 #endif
 {
-#ifdef HAVE_POSIX_MEMALIGN
+#if false //def HAVE_POSIX_MEMALIGN
     if (isAlignedAllocationEnabled())
     {
         void* ptr = NULL;
@@ -138,7 +138,7 @@ void* fastMalloc(size_t size)
             return OutOfMemoryError(size);
         return ptr;
     }
-#elif defined HAVE_MEMALIGN
+#elif false // defined HAVE_MEMALIGN
     if (isAlignedAllocationEnabled())
     {
         void* ptr = memalign(CV_MALLOC_ALIGN, size);
@@ -162,7 +162,7 @@ void fastFree_(void* ptr)
 void fastFree(void* ptr)
 #endif
 {
-#if defined HAVE_POSIX_MEMALIGN || defined HAVE_MEMALIGN
+#if false// defined HAVE_POSIX_MEMALIGN || defined HAVE_MEMALIGN
     if (isAlignedAllocationEnabled())
     {
         free(ptr);
